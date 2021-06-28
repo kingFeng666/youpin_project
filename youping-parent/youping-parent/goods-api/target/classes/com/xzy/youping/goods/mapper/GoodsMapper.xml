@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzy.youping.goods.mapper.GoodsMapper">
+
+    <select id="listByTitleWithNgam" resultType="com.xzy.youping.goods.entity.Goods">
+        SELECT *
+        FROM `goods`
+        where MATCH (title) against(#{title})  limit #{start},#{size}
+    </select>
+    <select id="totalByTitleWithNgam" resultType="java.lang.Long">
+        SELECT count(*)
+        FROM `goods`
+        where MATCH (title) against(#{title})
+    </select>
+</mapper>
